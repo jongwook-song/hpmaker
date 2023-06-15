@@ -1,0 +1,104 @@
+buildscript{
+	ext {
+		springBootVersion = '2.1.7.RELEASE'
+		querydslPluginVersion = '1.0.10'
+	}
+	repositories{
+		mavenCentral()
+		jcenter()
+		maven { url "https://plugins.gradle.org/m2/" }
+	}
+	dependencies{
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath("gradle.plugin.com.ewerk.gradle.plugins:querydsl-plugin:${querydslPluginVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: "com.ewerk.gradle.plugins.querydsl"
+
+group 'com.hpmaker'
+version = '0.0.1-SNAPSHOT'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.projectlombok:lombok')
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('org.jsoup:jsoup:1.9.1')
+	compile('org.mariadb.jdbc:mariadb-java-client')
+	compile (group: 'org.bgee.log4jdbc-log4j2', name: 'log4jdbc-log4j2-jdbc4', version: '1.16')
+	compile("com.querydsl:querydsl-jpa") // querydsl
+	compile("com.querydsl:querydsl-apt") // querydsl
+
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile('com.h2database:h2')
+}
+
+def queryDslDir = "src/main/generated"
+querydsl {
+	library = "com.querydsl:querydsl-apt:4.2.2" // 사용할 AnnotationProcesoor 정의
+	jpa = true
+	querydslSourcesDir = queryDslDir
+}
+sourceSets {
+	main {
+		java {
+			srcDir queryDslDir
+		}
+	}
+}
+
+compileQuerydsl {
+	options.annotationProcessorPath = configurations.querydsl
+}
+
+configurations {
+	/**
+	 * 손권남님이 공유해주신 팁
+	 * 아래를 지정하지 않으면, compile 로 걸린 JPA 의존성에 접근하지 못한다.
+	 */
+	querydsl.extendsFrom compileClasspath
+}
+
+//plugins {
+//	id 'java'
+//	id 'org.springframework.boot' version '2.7.13-SNAPSHOT'
+//	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+//}
+//
+//group = 'com.hpmaker'
+//version = '0.0.1-SNAPSHOT'
+//sourceCompatibility = '1.8'
+//
+//configurations {
+//	compileOnly {
+//		extendsFrom annotationProcessor
+//	}
+//}
+//
+//repositories {
+//	mavenCentral()
+//	maven { url 'https://repo.spring.io/milestone' }
+//	maven { url 'https://repo.spring.io/snapshot' }
+//}
+//
+//dependencies {
+//	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+//	implementation 'org.springframework.boot:spring-boot-starter-web'
+//	compileOnly 'org.projectlombok:lombok'
+//	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+//	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+//	annotationProcessor 'org.projectlombok:lombok'
+//	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+//}
+//
+//tasks.named('test') {
+//	useJUnitPlatform()
+//}
