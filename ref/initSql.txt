@@ -1,0 +1,13 @@
+CREATE TABLE Sites (
+	id        INT(11) NOT NULL AUTO_INCREMENT,
+	title     VARCHAR(200),
+	created_date	datetime,
+	modified_date	datetime,
+	modified_target VARCHAR(20)
+	is_delete   INT(1) default 0,
+	PRIMARY KEY(id)
+) ;
+
+등록/수정/삭제
+
+삭제는 isDelete값으로, 영구삭제는 관리자 화면에서 시행

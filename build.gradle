@@ -36,7 +36,7 @@ dependencies {
 	compile (group: 'org.bgee.log4jdbc-log4j2', name: 'log4jdbc-log4j2-jdbc4', version: '1.16')
 	compile("com.querydsl:querydsl-jpa") // querydsl
 	compile("com.querydsl:querydsl-apt") // querydsl
-
+	annotationProcessor 'org.projectlombok:lombok'
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('com.h2database:h2')
 }
