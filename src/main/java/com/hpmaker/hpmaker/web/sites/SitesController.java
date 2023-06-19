@@ -1,8 +1,9 @@
 package com.hpmaker.hpmaker.web.sites;
 
 import com.hpmaker.hpmaker.domain.sites.Sites;
-import com.hpmaker.hpmaker.domain.sites.dto.SitesSaveRequestDto;
-import com.hpmaker.hpmaker.service.sites.SiteService;
+import com.hpmaker.hpmaker.dto.sites.SitesMainResponseDto;
+import com.hpmaker.hpmaker.dto.sites.SitesSaveRequestDto;
+import com.hpmaker.hpmaker.service.sites.SitesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,14 +14,14 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-public class SitesReadController {
-    private final SiteService siteService;
+public class SitesController {
+    private final SitesService siteService;
 
-    @PostMapping( "/site/findAll")
-    public List< Sites> sitesFindAll( HttpServletRequest request){
+    @PostMapping( "/site/findIsNotDelete")
+    public List<SitesMainResponseDto> sitesFindIsDelete( HttpServletRequest request){
 //    public Page<Sites> findByDate(@RequestBody NewsListRequestDto newsListRequestDto, HttpServletRequest request){
 //        Page<Sites> bySitesList = null;//siteService.findBySitesList( sitesListRequestDto, request);
-        return siteService.findAll();
+        return siteService.findIsNotDelete();
     }
 
     @PostMapping( "site/saveSite")

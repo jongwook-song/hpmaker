@@ -31,6 +31,8 @@ public class QSites extends EntityPathBase<Sites> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> modifiedDate = _super.modifiedDate;
 
+    public final StringPath modifiedTarget = createString("modifiedTarget");
+
     public final StringPath title = createString("title");
 
     public QSites(String variable) {

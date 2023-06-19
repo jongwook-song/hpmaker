@@ -1,4 +1,4 @@
-package com.hpmaker.hpmaker.domain.sites;
+package com.hpmaker.hpmaker.domain.sitesDetail;
 
 import com.hpmaker.hpmaker.domain.BaseTimeEntity;
 import lombok.Builder;
@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @Entity
-public class Sites extends BaseTimeEntity {
+public class SitesDetail extends BaseTimeEntity {
     public final static int IS_NOT_DELETE_STATUS = 0;
     public final static int IS_DELETE_STATUS = 1;
 
@@ -20,14 +20,18 @@ public class Sites extends BaseTimeEntity {
 
     @Column(columnDefinition = "TEXT", nullable = false)
     private String title;
-    private String modifiedTarget;
+    private String url;
+    private Long siteId;
+    private Long pageId;
     private int isDelete; // 기본값 : 0, 삭제 시 : 1
 
     @Builder
-    public Sites ( Long id, String title, int isDelete, String modifiedTarget){
+    public SitesDetail(Long id, String title, String url, Long siteId, Long pageId, int isDelete){
         this.id = id;
         this.title = title;
         this.isDelete = isDelete;
-        this.modifiedTarget = modifiedTarget;
+        this.url = url;
+        this.siteId = siteId;
+        this.pageId = pageId;
     }
 }

@@ -1,13 +1,12 @@
-package com.hpmaker.hpmaker.domain.sites.dto;
+package com.hpmaker.hpmaker.dto.sites;
 
 import lombok.Getter;
 
 @Getter
-public class SitesListRequestDtoBak {
+public class SitesListRequestDto {
     private Long id; // pk
 
     private String searchText;
     private String searchdate;
     private int currentPage;
-
 }

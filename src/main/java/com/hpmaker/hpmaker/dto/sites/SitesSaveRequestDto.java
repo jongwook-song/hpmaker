@@ -1,4 +1,4 @@
-package com.hpmaker.hpmaker.domain.sites.dto;
+package com.hpmaker.hpmaker.dto.sites;
 
 import com.hpmaker.hpmaker.domain.sites.Sites;
 import lombok.Getter;

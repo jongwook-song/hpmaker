@@ -6,8 +6,35 @@ CREATE TABLE Sites (
 	modified_target VARCHAR(20)
 	is_delete   INT(1) default 0,
 	PRIMARY KEY(id)
-) ;
+);
+-- 삭제는 isDelete값으로, 영구삭제는 관리자 화면에서 시행
 
-등록/수정/삭제
+CREATE TABLE SitesDetail (
+	id        INT(11) NOT NULL AUTO_INCREMENT,
+	title     VARCHAR(200),
+	url     VARCHAR(200),
+	site_id     INT(11) NOT NULL,
+	page_id     INT(11) NOT NULL,
+	created_date	datetime,
+	modified_date	datetime,
+	is_delete   INT(1) default 0,
+	PRIMARY KEY(id)
+);
 
-삭제는 isDelete값으로, 영구삭제는 관리자 화면에서 시행
+CREATE TABLE PageInfo (
+	page_id     INT(11) NOT NULL,
+	page_path   VARCHAR(2000),
+	created_date	datetime,
+	modified_date	datetime,
+	default_version INT(1) default 1
+);
+
+수정/삭제
+페이지 상세보기(컨텐츠 등록, DB부터....)
+
+
+
+
+drop table Sites;
+drop table SitesDetail;
+drop table PageInfo;
