@@ -4,7 +4,7 @@
 
   branches:
     only:
-      - hpmaster
+      - hpmaker
 
   # Travis CI 서버의 Home
   cache:
