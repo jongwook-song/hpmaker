@@ -14,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 public class SitesDetailController {
-    private SitesDetailService sitesDetailService;
+    private final SitesDetailService sitesDetailService;
 
     @PostMapping( "/siteDetail/findSiteDetail")
     public List<SitesDetail> findBySiteIdAndIsNotDelete(@RequestBody SitesDetailListRequestDto sitesDetailListRequestDto, HttpServletRequest request){
