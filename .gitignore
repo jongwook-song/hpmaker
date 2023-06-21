@@ -1,3 +1,6 @@
+*/application-real-db.properties
+*/gradle-wrapper.jar
+
 HELP.md
 .gradle
 build/
@@ -6,8 +9,7 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-*/gradle-wrapper.jar
-*/application-real-db.properties
+
 
 ### STS ###
 .apt_generated
